@@ -27,8 +27,7 @@ def import_setup_data():
     """
 
     logger.debug('\nimport_credentials')
-
-    file_path = 'C:\\Work_Files\\Repositories\\sandbox\\ExampleFiles\\example_Oracle\\'
+    file_path = 'C:\\Work_Files\\Repositories\\sandbox\\example_files\\example_Oracle\\'
     file_name = 'config.ini'
     setup_data = {}
 
@@ -40,7 +39,7 @@ def import_setup_data():
 
             for field in configuration_info:
 
-                logger.info(field)
+                logger.debug(field.strip())
 
                 key = re.sub('=.*$', '', field.strip())
                 value = re.sub('^.*=', '', field.strip())
@@ -59,22 +58,36 @@ def import_setup_data():
 
 def main():
 
-    db_connection_setup = import_setup_data()
+    querystring = "select * from ci_coupons order by cpn_id desc"
+    column_names = []
 
+    # Grab credentials and connection string form file
+    db_connection_setup = import_setup_data()
     conn_str = u'{0}/{1}@{2}:{3}/{4}'.format(db_connection_setup['username'],
                                              db_connection_setup['password'],
                                              db_connection_setup['host'],
                                              db_connection_setup['port'],
                                              db_connection_setup['service'])
 
+    # Setup the connection to Oracle
     oracle_connection = cx_Oracle.connect(conn_str)
-    logger.info('DB Version: {0}'.format(oracle_connection.version))
-
     cursor = oracle_connection.cursor()
-    querystring = "select * from ci_coupons"
+    logger.debug('DB Version: {0}\n'.format(oracle_connection.version))
+
+    # Run the query
     cursor.execute(querystring)
 
+    # Get the Table Description to get Column Names
+    table_description = cursor.description
+    logger.debug('Table Description:\n{0}\n'.format(cursor.description))
+
+    for column in table_description:
+        column_names.append(column[0])
+
+    logger.info(column_names)
+
     for row in cursor:
+
         logger.info(row)
 
     oracle_connection.close()
