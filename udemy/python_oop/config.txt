@@ -1,0 +1,4 @@
+os=windows    
+python_ver=3.5   
+user=pachilds  
+dog=penny 
