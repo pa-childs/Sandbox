@@ -1,12 +1,16 @@
 body{
-    background-color: #000000; /*Black*/
-    color: #ffffff; /*White*/
+    background-color: #ffffff; /*White*/
+    color: #000000; /*Black*/
     font-family: 'Overlock', cursive;
 }
 
+input{
+    color: #000000; /*Black*/
+}
+
 .jumbotron{
-    background-color: #A3A3A3; /*Medium Grey*/
-    border: 5px solid #c6180d; /*Dark Red*/
+    background-color: #ffffff; /*White*/
+    border: 5px solid #2d6fc6; /*Dark Blue*/
     border-radius: 0px 0px 25px 25px;
     color: #000000; /*Black*/
     padding: 10px;
@@ -18,15 +22,31 @@ body{
 }
 
 .button{
-    background-color: #c6180d; /*Dark Red*/
+
     border: 0px;
-    color: #ffffff; /*White*/
+
     font-weight: bold;
     margin-top: 10px;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-#question{
+#quiz{
     visibility: hidden;
+}
+
+#next_button{
+    display: none;
+}
+
+#try_again_button{
+    display: none;
+}
+
+#pass_button{
+    display: none;
+}
+
+#result{
+    display: none;
 }

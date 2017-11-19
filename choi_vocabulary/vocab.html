@@ -25,21 +25,31 @@
 
             <div class="row">
 
-                <button id="start_button" class="btn btn-default btn-lg button">Start</button>
+                <button id="start_button" class="btn btn-primary btn-lg button">Start</button>
 
             </div>
 
-            <div id="question" class="row">
+            <div id="quiz" class="row">
 
-                <label for="question">What does ki hap mean?</label>
-                <br>
-                <input id="answer" type="text" name="answer">
-                <br>
-                <button id="check_button" class="btn btn-default btn-lg button" type="submit">Check</button>
+                <h3 id="question_header"></h3>
+
+                        <label id="question" for="question"></label>
+                        <br>
+                        <input id="answer" type="text" name="answer">
+                        <br>
+                        <h4 id="result"></h4>
+                        <button id="check_button" class="btn btn-primary btn-lg button">Check</button>
+                        <button id="next_button" class="btn btn-primary btn-lg button">Next Word</button>
+                        <button id="try_again_button" class="btn btn-primary btn-lg button">Try Again</button>
+                        <button id="pass_button" class="btn btn-primary btn-lg button">Pass</button>
+
+                    </div>
+
             </div>
 
         </div>
 
     <script src="javascript/javascript.js"></script>
+
 </body>
 </html>
