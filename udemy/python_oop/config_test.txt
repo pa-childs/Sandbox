@@ -1,0 +1,3 @@
+os=windows
+user=pachilds
+python_ver=3.5
