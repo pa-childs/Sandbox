@@ -41,6 +41,10 @@ input{
     padding: 10px 15px 10px;
 }
 
+#need_hint_button{
+    display: none;
+}
+
 #next_word_button{
     display: none;
 }

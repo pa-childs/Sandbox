@@ -125,16 +125,9 @@ var vocabulary_words = [
     ["Self Defense", "Jah-gee Bahng-uh", "Terms"],
     ["Loud Yell", "Ki Hap", "Terms"]
 
-
-
 ];
 
-var check_button = document.querySelector("#check_button");
-var next_word_button = document.querySelector("#next_word_button");
-var start_again_button = document.querySelector("#start_again_button");
-var start_button = document.querySelector("#start_button");
 var answer_input = document.querySelector("#answer");
-var question_header = document.querySelector("#question_header");
 var question_label = document.querySelector("#question");
 var quiz_div = document.querySelector("#quiz");
 var result_header = document.querySelector("#result");
@@ -163,11 +156,11 @@ function determine_vocabulary_word(){
             // Grab Vocabulary Word and Translation
             vocabulary_word.push(vocabulary_words[random_number][0]); // English
             vocabulary_word.push(vocabulary_words[random_number][1]); // Korean
+            vocabulary_word.push(vocabulary_words[random_number][2]); // Category Hint
 
             // Add word to used_vocabulary_words
             used_vocabulary_words.push(random_number);
 
-            number_chosen = true;
             return vocabulary_word;
 
         }
@@ -184,6 +177,8 @@ function next_word(){
     // Hide elements that are needed
     result_header.style.display = "none";
     result_header.innerHTML = "";
+    result_header.classList.remove("correct")
+    result_header.classList.remove("incorrect")
     next_word_button.style.display = "none";
 
     // Show elements that are needed
@@ -199,6 +194,35 @@ function next_word(){
 
 }
 
+function try_again(hint){
+
+    console.log("Trying " + current_vocabulary_word[1] + " again");
+
+    // Hide elements that are not needed
+    result_header.style.display = "none";
+    result_header.innerHTML = ""
+    result_header.classList.remove("incorrect")
+    try_again_button.style.display = "none";
+    need_hint_button.style.display = "none";
+    pass_button.style.display = "none";
+
+    // Show elements that are needed
+    question_label.style.display = "block";
+    answer_input.style.display = "block";
+    check_button.style.display = "block";
+
+    if (hint){
+
+        console.log("Getting a hint")
+        question_label.innerHTML = "What is the meaning of <em>" + current_vocabulary_word[1] + "</em>? (Hint: <strong>" + current_vocabulary_word[2] + "</strong>)";
+
+    }
+
+    // Clear input box
+    answer_input.value = ""
+
+}
+
 answer_input.addEventListener("keyup", function(event){
 
     event.preventDefault();
@@ -209,7 +233,6 @@ answer_input.addEventListener("keyup", function(event){
     }
 
 })
-
 
 check_button.addEventListener("click", function(){
 
@@ -257,14 +280,21 @@ check_button.addEventListener("click", function(){
         result_header.innerHTML = "That was not correct. Try again?"
         result_header.className += " incorrect"
         try_again_button.style.display = "inline";
+        need_hint_button.style.display = "inline";
         pass_button.style.display = "inline";
     }
 
 })
 
+need_hint_button.addEventListener("click", function(){
+
+    try_again(true);
+
+})
+
 next_word_button.addEventListener("click", function(){
 
-    next_word()
+    next_word();
 
 })
 
@@ -298,28 +328,15 @@ start_again_button.addEventListener("click", function(){
 
 try_again_button.addEventListener("click", function(){
 
-    console.log("Trying " + current_vocabulary_word[1] + " again");
-
-    // Hide elements that are not needed
-    result_header.style.display = "none";
-    result_header.innerHTML = ""
-    try_again_button.style.display = "none";
-    pass_button.style.display = "none";
-
-    // Show elements that are needed
-    question_label.style.display = "block";
-    answer_input.style.display = "block";
-    check_button.style.display = "block";
-
-    // Clear input box
-    answer_input.value = ""
+    try_again(false);
 
 })
 
 pass_button.addEventListener("click", function(){
 
     try_again_button.style.display = "none";
+    need_hint_button.style.display = "none";
     pass_button.style.display = "none";
-    next_word()
+    next_word();
 
 })
