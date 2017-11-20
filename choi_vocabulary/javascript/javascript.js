@@ -17,18 +17,12 @@ var current_vocabulary_word;
 
 var start_button = document.querySelector("#start_button");
 var check_button = document.querySelector("#check_button");
-var next_button = document.querySelector("#next_button");
+var next_word_button = document.querySelector("#next_word_button");
 var quiz_div = document.querySelector("#quiz");
 var question_header = document.querySelector("#question_header");
 var question_label = document.querySelector("#question");
 var answer_input = document.querySelector("#answer");
 var result_header = document.querySelector("#result");
-
-
-function random_test(min, max){
-    random_number = Math.floor(Math.random() * (max - min)) + min;
-    console.log("random_number: " + random_number);
-}
 
 function determine_vocabulary_word(){
     var number_chosen = false;
@@ -65,20 +59,43 @@ function determine_vocabulary_word(){
     }
 }
 
-start_button.addEventListener("click", function(){
+function next_word(){
 
+    console.log("Displaying next word")
+
+    // Prepare for next word
+    questions_asked++;
     current_vocabulary_word = determine_vocabulary_word();
 
-    game_started = true;
-    start_button.style.display = "none";
-    console.log("Game has started: " + game_started);
+    // Hide elements that are needed
+    result_header.style.display = "none";
+    result_header.innerHTML = "";
+    next_word_button.style.display = "none";
 
+    // Show elements that are needed
+    question_label.style.display = "block";
+    answer_input.style.display = "block";
+    check_button.style.display = "block";
+
+    // Set text for new word
     question_header.innerHTML = "Vocabulary question " + (questions_asked + 1) + " of 10.";
     question_label.innerHTML = "What is the meaning of " + current_vocabulary_word[1] + "?";
-    quiz_div.style.visibility = "visible";
+    answer_input.value = "";
     console.log("Vocabulary presented: " + current_vocabulary_word[1]);
 
+}
+
+answer_input.addEventListener("keyup", function(event){
+
+    event.preventDefault();
+    if (event.keyCode ===13) {
+
+        check_button.click()
+
+    }
+
 })
+
 
 check_button.addEventListener("click", function(){
 
@@ -96,8 +113,7 @@ check_button.addEventListener("click", function(){
         // Show elements that are needed
         result_header.style.display = "block";
         result_header.innerHTML = "Correct! " + current_vocabulary_word[1] + " means " + current_vocabulary_word[0] + "."
-        next_button.style.display = "block";
-        questions_asked++;
+        next_word_button.style.display = "block";
 
     } else {
 
@@ -114,5 +130,54 @@ check_button.addEventListener("click", function(){
         try_again_button.style.display = "inline";
         pass_button.style.display = "inline";
     }
+
+})
+
+next_word_button.addEventListener("click", function(){
+
+    next_word()
+
+})
+
+start_button.addEventListener("click", function(){
+
+    current_vocabulary_word = determine_vocabulary_word();
+
+    game_started = true;
+    start_button.style.display = "none";
+    console.log("Game has started: " + game_started);
+
+    question_header.innerHTML = "Vocabulary question " + (questions_asked + 1) + " of 10.";
+    question_label.innerHTML = "What is the meaning of " + current_vocabulary_word[1] + "?";
+    quiz_div.style.visibility = "visible";
+    console.log("Vocabulary presented: " + current_vocabulary_word[1]);
+
+})
+
+try_again_button.addEventListener("click", function(){
+
+    console.log("Trying " + current_vocabulary_word[1] + " again");
+
+    // Hide elements that are not needed
+    result_header.style.display = "none";
+    result_header.innerHTML = ""
+    try_again_button.style.display = "none";
+    pass_button.style.display = "none";
+
+    // Show elements that are needed
+    question_label.style.display = "block";
+    answer_input.style.display = "block";
+    check_button.style.display = "block";
+
+    // Clear input box
+    answer_input.value = ""
+
+})
+
+pass_button.addEventListener("click", function(){
+
+    try_again_button.style.display = "none";
+    pass_button.style.display = "none";
+    next_word()
 
 })

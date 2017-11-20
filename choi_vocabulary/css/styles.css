@@ -11,19 +11,18 @@ input{
 .jumbotron{
     background-color: #ffffff; /*White*/
     border: 5px solid #2d6fc6; /*Dark Blue*/
-    border-radius: 0px 0px 25px 25px;
+    border-radius: 0 0 25px 25px;
     color: #000000; /*Black*/
     padding: 10px;
 }
 
 .row{
     padding: 10px 15px 10px;
-    padding-bottom: 25px;
 }
 
 .button{
 
-    border: 0px;
+    border: 0;
 
     font-weight: bold;
     margin-top: 10px;
@@ -35,7 +34,7 @@ input{
     visibility: hidden;
 }
 
-#next_button{
+#next_word_button{
     display: none;
 }
 
