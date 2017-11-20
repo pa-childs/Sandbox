@@ -8,18 +8,6 @@ input{
     color: #000000; /*Black*/
 }
 
-.jumbotron{
-    background-color: #ffffff; /*White*/
-    border: 5px solid #2d6fc6; /*Dark Blue*/
-    border-radius: 0 0 25px 25px;
-    color: #000000; /*Black*/
-    padding: 10px;
-}
-
-.row{
-    padding: 10px 15px 10px;
-}
-
 .button{
 
     border: 0;
@@ -30,15 +18,30 @@ input{
     padding-right: 20px;
 }
 
-#quiz{
-    visibility: hidden;
+.correct{
+    color: #27b119; /*Greenish*/
+}
+
+.incorrect{
+    color: #c82b09; /*Redish*/
+}
+
+.jumbotron{
+    background-color: #ffffff; /*White*/
+    border: 5px solid #2d6fc6; /*Dark Blue*/
+    border-radius: 0 0 25px 25px;
+    color: #000000; /*Black*/
+    padding: 10px;
+}
+
+.navbar-default{
+    margin-bottom: 0;
+}
+.row{
+    padding: 10px 15px 10px;
 }
 
 #next_word_button{
-    display: none;
-}
-
-#try_again_button{
     display: none;
 }
 
@@ -46,6 +49,18 @@ input{
     display: none;
 }
 
+#quiz{
+    visibility: hidden;
+}
+
 #result{
+    display: none;
+}
+
+#start_again_button{
+    display: none;
+}
+
+#try_again_button{
     display: none;
 }
