@@ -41,11 +41,19 @@ input{
     padding: 10px 15px 10px;
 }
 
+#logo{
+   text-align: center; /*Better way?*/
+}
+
 #need_hint_button{
     display: none;
 }
 
 #next_word_button{
+    display: none;
+}
+
+#pass_button{
     display: none;
 }
 
