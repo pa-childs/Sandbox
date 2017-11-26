@@ -226,7 +226,7 @@ function try_again(hint){
 answer_input.addEventListener("keyup", function(event){
 
     event.preventDefault();
-    if (event.keyCode ===13) {
+    if (event.keyCode === 13) {
 
         check_button.click()
 
