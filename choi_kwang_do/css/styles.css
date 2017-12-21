@@ -41,6 +41,12 @@ input{
     padding: 10px 15px 10px;
 }
 
+#history_table{
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
 #logo{
    text-align: center; /*Better way?*/
 }
